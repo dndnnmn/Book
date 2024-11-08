@@ -10,8 +10,8 @@ const paper4 = document.querySelector("#p4");
 const paper5 = document.querySelector("#p5");
 
 // Event Listener
-prevBtn.addEventListener("click", goPrevPage);
-nextBtn.addEventListener("click", goNextPage);
+prevBtn.addEventListener("pointerdown", goPrevPage);
+nextBtn.addEventListener("pointerdown", goNextPage);
 
 // Business Logic
 let currentLocation = 1;
