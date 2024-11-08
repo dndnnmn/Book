@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    gap: 40px;
+    overflow: hidden;
+    filter: brightness(0.8); /* Adjust as needed */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6); /* Adjust as needed */
+    z-index: -1;
+}
+
+
+
+/* Book */
+.book {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    transition: transform 0.5s;
+}
+
+.paper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    perspective: 1500px;
+}
+
+.front,
+.back {
+    background-image: url("papers.jpg");
+    position: absolute;
+    width: 100%;
+    border-radius: 10px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transition: transform 0.5s;
+}
+
+/* Specific color for the first front page */
+#p1 .front {
+    background-image: url("front.png");
+    background-size: contain;
+    border: none;
+}
+
+#f1 {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+}
+
+#header {
+    font-size: 30px;
+    padding-top: 200px;
+}
+
+h1 {
+    font-size: 20px;
+    padding-top: 40px;
+}
+
+.front {
+    z-index: 1;
+    backface-visibility: hidden;
+    border-left: 3px solid white;
+}
+
+.back {
+    z-index: 0;
+}
+
+.front-content,
+.back-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   gap: 50px;
+  
+
+}
+
+p {
+    max-width: 280px;
+    margin: auto;
+    margin-top: 0;
+    font-size: 20px;
+}
+.back-content {
+    transform: rotateY(180deg);
+}
+
+/* Paper flip effect */
+.flipped .front,
+.flipped .back {
+    transform: rotateY(-180deg);
+}
+
+.btn-cont {
+    display: flex;
+    gap: 20px;
+}
+
+/* Controller Buttons */
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.5s;
+    z-index: 9999;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+i {
+    font-size: 50px;
+    color: white;
+}
+
+/* Paper stack order */
+#p1 {
+    z-index: 5;
+}
+
+#p2 {
+    z-index: 4;
+}
+
+#p3 {
+    z-index: 3;
+}
+
+#p4 {
+    z-index: 2;
+}
+
+#p5 {
+    z-index: 1;
+}
