@@ -4,10 +4,7 @@ const nextBtn = document.querySelector("#next-btn");
 const book = document.querySelector("#book");
 
 // Create references for the pages dynamically
-const pages = [];
-for (let i = 1; i <= 51; i++) {
-    pages.push(document.querySelector(`#p${i}`));
-}
+const pages = Array.from({ length: 51 }, (_, i) => document.querySelector(`#p${i + 1}`));
 
 // Event Listener
 prevBtn.addEventListener("pointerdown", goPrevPage);
@@ -15,19 +12,14 @@ nextBtn.addEventListener("pointerdown", goNextPage);
 
 // Business Logic
 let currentLocation = 1;
-let numOfPapers = 51;
-let maxLocation = numOfPapers + 1;
+const numOfPapers = 51;
 
 function closeBook(isAtBeginning) {
-    if (isAtBeginning) {
-        book.style.transform = "translateX(0%)";
-    } else {
-        book.style.transform = "translateX(-50%)"; // Adjust as needed
-    }
+    book.style.transform = isAtBeginning ? "translateX(0%)" : "translateX(-50%)"; // Use a ternary operator for cleaner code
 }
 
 function goNextPage() {
-    if (currentLocation < maxLocation) {
+    if (currentLocation < numOfPapers) {
         pages[currentLocation - 1].classList.add("flipped"); // Add the "flipped" class to the current page
         currentLocation++;
     }
