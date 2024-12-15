@@ -33,6 +33,7 @@ function goNextPage() {
     }
 }
 
+
 function goPrevPage() {
     if (currentLocation > 1) {
         if (currentLocation === 2) {
