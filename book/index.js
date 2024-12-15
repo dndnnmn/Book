@@ -1,81 +1,44 @@
-
-// JavaScript Code
+// References to DOM Elements
 const prevBtn = document.querySelector("#prev-btn");
 const nextBtn = document.querySelector("#next-btn");
-const book = document.querySelector(".book");
+const book = document.querySelector("#book");
 
-const numOfPages = 51; // Total number of pages
-let currentPage = 0; // Track the current page (0 = cover, 1 = first page, etc.)
+// Create references for the pages dynamically
+const pages = [];
+for (let i = 1; i <= 51; i++) {
+    pages.push(document.querySelector(`#p${i}`));
+}
 
-// Dynamically create pages and add to the book
-const createPage = (pageNumber) => {
-    const pageContainer = document.createElement("div");
-    pageContainer.classList.add("paper");
-    pageContainer.dataset.page = pageNumber;
+// Event Listener
+prevBtn.addEventListener("pointerdown", goPrevPage);
+nextBtn.addEventListener("pointerdown", goNextPage);
 
-    const frontPage = document.createElement("div");
-    frontPage.classList.add("front");
+// Business Logic
+let currentLocation = 1;
+let numOfPapers = 51;
+let maxLocation = numOfPapers + 1;
 
-    if (pageNumber === 0) {
-        frontPage.style.backgroundImage = `url('pages/front page.png')`;
+function closeBook(isAtBeginning) {
+    if (isAtBeginning) {
+        book.style.transform = "translateX(0%)";
     } else {
-        frontPage.style.backgroundImage = `url('pages/page${pageNumber}.png')`;
+        book.style.transform = "translateX(-50%)"; // Adjust as needed
     }
-
-    const backPage = document.createElement("div");
-    backPage.classList.add("back");
-    backPage.style.backgroundImage = `url('pages/back.png')`;
-
-    pageContainer.appendChild(frontPage);
-    pageContainer.appendChild(backPage);
-    book.appendChild(pageContainer);
-};
-
-// Initialize the book with pages
-for (let i = 0; i < numOfPages; i++) {
-    createPage(i);
 }
 
-// Adjust the z-index of the pages
-function adjustPageZIndex() {
-    const allPages = document.querySelectorAll(".paper");
-    allPages.forEach((page, index) => {
-        if (index < currentPage) {
-            page.style.zIndex = index + 1; // Ensure flipped pages stay in order
-        } else if (index === currentPage) {
-            page.style.zIndex = allPages.length + 1; // Current page on top
-        } else {
-            page.style.zIndex = allPages.length - index; // Maintain proper layering
-        }
-    });
-}
-
-// Go to the next page
 function goNextPage() {
-    if (currentPage < numOfPages - 1) {
-        const currentPaper = document.querySelectorAll(".paper")[currentPage];
-        currentPaper.classList.add("flipped");
-        currentPage++;
-        adjustPageZIndex();
+    if (currentLocation < maxLocation) {
+        pages[currentLocation - 1].classList.add("flipped"); // Add the "flipped" class to the current page
+        currentLocation++;
     }
 }
 
-// Go to the previous page
 function goPrevPage() {
-    if (currentPage > 0) {
-        const currentPaper = document.querySelectorAll(".paper")[currentPage - 1];
-        currentPaper.classList.remove("flipped");
-        currentPage--;
-        adjustPageZIndex();
+    if (currentLocation > 1) {
+        if (currentLocation === 2) {
+            closeBook(true); // Close the book if we are at the first page
+        }
+        pages[currentLocation - 2].classList.remove("flipped"); // Remove the "flipped" class from the previous page
+        currentLocation--;
     }
 }
-
-// Initialize the book
-function initializeBook() {
-    adjustPageZIndex();
-}
-initializeBook();
-
-// Event Listeners for Navigation Buttons
-prevBtn.addEventListener("click", goPrevPage);
-nextBtn.addEventListener("click", goNextPage);

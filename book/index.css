@@ -1,88 +1,372 @@
-/* Reset and box model */
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Marck+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rock+Salt&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cedarville+Cursive&family=Marck+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rock+Salt&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body */
 body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: 'Poppins', sans-serif;
+    font-family: sans-serif;
     background-image: url("bg.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
     gap: 40px;
     overflow: hidden;
+    filter: brightness(0.8); /* Adjust as needed */
 }
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6); /* Adjust as needed */
+    z-index: -1;
+}
+
+
 
 /* Book */
 .book {
     position: relative;
     width: 350px;
     height: 500px;
-    perspective: 1500px; /* Enables 3D space */
+    transition: transform 0.5s;
 }
 
-/* Paper */
 .paper {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    transform-style: preserve-3d; /* Maintain 3D space */
-    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smooth flip effect */
+    perspective: 1500px;
 }
 
-/* Front and Back Pages */
 .front,
 .back {
+    background-image: url("papers.jpg");
     position: absolute;
     width: 100%;
+    border-radius: 10px;
     height: 100%;
     top: 0;
     left: 0;
-    background-size: cover;
-    background-position: center;
-    backface-visibility: hidden; /* Hide the back during the flip */
-    transform-origin: left; /* Flip starts from the left edge */
-}
-
-/* Front Page */
-.front {
     transform-origin: left;
-    z-index: 2;
+    transition: transform 0.5s;
 }
 
-/* Back Page */
-.back {
-    transform: rotateY(180deg); /* Back is initially rotated 180 degrees */
-    transform-origin: right; /* Flip starts from the right edge */
+/* Specific color for the first front page */
+#p1 .front {
+    background-image: url("front.png");
+    background-size: contain;
+    border: none;
+}
+
+#f1 {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+}
+
+#header {
+    font-size: 40px;
+    padding-top: 200px;
+    font-family: Amita;
+}
+
+h1 {
+    font-size: 20px;
+    padding-top: 30px;
+    font-weight: bold;
+    font-family: Amita;
+}
+
+.front {
     z-index: 1;
+    backface-visibility: hidden;
+    border-left: 3px solid white;
 }
 
-/* Flip Effect */
-.flipped {
-    transform: rotateY(-180deg); /* Full flip to show the back */
+.back {
+    z-index: 0;
 }
 
-/* Navigation Buttons */
+
+
+.front-content,
+.back-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   gap: 40px;
+  
+
+}
+
+p {
+    max-width: 280px;
+    margin: auto;
+    margin-top: 0px;
+    font-weight: 500;
+    font-size: 21px;
+    font-family:Marck Script;
+}
+.back-content {
+    transform: rotateY(180deg);
+}
+
+/* Paper flip effect */
+.flipped .front,
+.flipped .back {
+    transform: rotateY(-180deg);
+}
+
+.btn-cont {
+    display: flex;
+    gap: 20px;
+}
+
+/* Controller Buttons */
 button {
     border: none;
     background-color: transparent;
     cursor: pointer;
     margin: 10px;
-    font-size: 50px;
-    color: white;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s;
+    z-index: 9999;
 }
 
 button:focus {
     outline: none;
+}
+
+
+i {
+    font-size: 50px;
+    color: white;
+}
+
+#p1 {
+    z-index: 50;
+}
+
+#p2 {
+    z-index: 49;
+}
+
+#p3 {
+    z-index: 48;
+}
+
+#p4 {
+    z-index: 47;
+}
+
+#p5 {
+    z-index: 46;
+}
+
+#p6 {
+    z-index: 45;
+}
+
+#p7 {
+    z-index: 44;
+}
+
+#p8 {
+    z-index: 43;
+}
+
+#p9 {
+    z-index: 42;
+}
+
+#p10 {
+    z-index: 41;
+}
+
+#p11 {
+    z-index: 40;
+}
+
+#p12 {
+    z-index: 39;
+}
+
+#p13 {
+    z-index: 38;
+}
+
+#p14 {
+    z-index: 37;
+}
+
+#p15 {
+    z-index: 36;
+}
+
+#p16 {
+    z-index: 35;
+}
+
+#p17 {
+    z-index: 34;
+}
+
+#p18 {
+    z-index: 33;
+}
+
+#p19 {
+    z-index: 32;
+}
+
+#p20 {
+    z-index: 31;
+}
+
+#p21 {
+    z-index: 30;
+}
+
+#p22 {
+    z-index: 29;
+}
+
+#p23 {
+    z-index: 28;
+}
+
+#p24 {
+    z-index: 27;
+}
+
+#p25 {
+    z-index: 26;
+}
+
+#p26 {
+    z-index: 25;
+}
+
+#p27 {
+    z-index: 24;
+}
+
+#p28 {
+    z-index: 23;
+}
+
+#p29 {
+    z-index: 22;
+}
+
+#p30 {
+    z-index: 21;
+}
+
+#p31 {
+    z-index: 20;
+}
+
+#p32 {
+    z-index: 19;
+}
+
+#p33 {
+    z-index: 18;
+}
+
+#p34 {
+    z-index: 17;
+}
+
+#p35 {
+    z-index: 16;
+}
+
+#p36 {
+    z-index: 15;
+}
+
+#p37 {
+    z-index: 14;
+}
+
+#p38 {
+    z-index: 13;
+}
+
+#p39 {
+    z-index: 12;
+}
+
+#p40 {
+    z-index: 11;
+}
+
+#p41 {
+    z-index: 10;
+}
+
+#p42 {
+    z-index: 9;
+}
+
+#p43 {
+    z-index: 8;
+}
+
+#p44 {
+    z-index: 7;
+}
+
+#p45 {
+    z-index: 6;
+}
+
+#p46 {
+    z-index: 5;
+}
+
+#p47 {
+    z-index: 4;
+}
+
+#p48 {
+    z-index: 3;
+}
+
+#p49 {
+    z-index: 2;
+}
+
+#p50 {
+    z-index: 1;
+}
+
+#p51 {
+    z-index: 0;
 }
