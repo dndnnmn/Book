@@ -5,7 +5,7 @@ const book = document.querySelector("#book");
 
 // Create references for the pages dynamically
 const pages = [];
-for (let i = 1; i <= 51; i++) {
+for (let i = 1; i <= 64; i++) {
     pages.push(document.querySelector(`#p${i}`));
 }
 
@@ -15,7 +15,7 @@ nextBtn.addEventListener("pointerdown", goNextPage);
 
 // Business Logic
 let currentLocation = 1;
-let numOfPapers = 51;
+let numOfPapers = 64;
 let maxLocation = numOfPapers + 1;
 
 function closeBook(isAtBeginning) {
